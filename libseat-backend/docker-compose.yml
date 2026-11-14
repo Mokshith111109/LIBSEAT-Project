@@ -1,0 +1,19 @@
+# Quick production-like setup:  docker compose up --build   (not tested here)
+services:
+  db:
+    image: postgres:16
+    environment: {POSTGRES_USER: libseat, POSTGRES_PASSWORD: password, POSTGRES_DB: libseat}
+    volumes: [pgdata:/var/lib/postgresql/data]
+  api:
+    build: .
+    env_file: .env
+    environment: {DATABASE_URL: "postgresql://libseat:password@db:5432/libseat"}
+    depends_on: [db]
+    ports: ["8000:8000"]
+  release:        # runs the 20-minute release job every minute
+    build: .
+    env_file: .env
+    environment: {DATABASE_URL: "postgresql://libseat:password@db:5432/libseat"}
+    command: sh -c "while true; do python release.py; sleep 60; done"
+    depends_on: [db]
+volumes: {pgdata: {}}

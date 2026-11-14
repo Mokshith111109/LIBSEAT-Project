@@ -1,0 +1,5 @@
+Flask>=3.0
+PyJWT>=2.8
+gunicorn>=22.0
+psycopg2-binary>=2.9   # only needed for PostgreSQL (production)
+tzdata>=2024.1      # time zone data (needed on Windows)

@@ -1,0 +1,4 @@
+.env
+libseat.db
+__pycache__/
+venv/

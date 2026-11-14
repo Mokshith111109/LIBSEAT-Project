@@ -1,0 +1,12 @@
+# Local secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local databases and backups
+**/libseat.db*
+
+# Python virtual environments and caches
+**/venv/
+**/__pycache__/
+*.py[cod]
